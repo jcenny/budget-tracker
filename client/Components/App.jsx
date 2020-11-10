@@ -10,15 +10,27 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   const getTransactions = () => {
-    Axios.get('/transactions').then((data) => {
+    Axios.get('/transactions')
+      .then((data) => {
       setTransactions(data.data);
-    })
+      })
+      .catch(err => console.log(`error getting transactions: ${err}`)) 
   };
 
   const getCategories = () => {
-    Axios.get('/categories').then((data) => {
-      setCategories(data.data);
-    })
+    Axios.get('/categories')
+      .then((data) => {
+        setCategories(data.data);
+      })
+      .catch(err => console.log(`error getting categories: ${err}`))
+  }
+
+  const addCategory = ({category, budget}) => {
+    Axios.post('/categories', { category, budget })
+      .then(() => {
+        getCategories();
+      })
+      .catch(err => console.log(`error posting category: ${err}`))
   }
 
   useEffect(() => {
@@ -29,7 +41,7 @@ function App() {
   return (
     <div>
       <TransactionList transactions={transactions} categories={categories}/>
-      <CategoryForm />
+      <CategoryForm addCategory={addCategory}/>
       <PurchaseForm />
     </div>
   )

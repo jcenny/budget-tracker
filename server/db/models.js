@@ -23,7 +23,7 @@ module.exports = {
   },
   postTransaction: (req, callback) => {
     const {name, amount} = req;
-    db.query(`INSERT INTO transaction (name, amount) VALUES (${name}, ${amount});`, (err) => {
+    db.query(`INSERT INTO transaction (name, amount) VALUES ('${name}', ${amount});`, (err) => {
       if (err) {
         console.log(`error posting transaction to DB: ${err}`);
         callback(err);
@@ -34,7 +34,7 @@ module.exports = {
   },
   postCategory: (req, callback) => {
     const {category, budget} = req;
-    db.query(`INSERT INTO categories (category, budget) VALUES (${category}, ${budget});`, (err) => {
+    db.query(`INSERT INTO categories (category, budget) VALUES ('${category}',${budget});`, (err) => {
       if (err) {
         console.log(`error posting category to DB: ${err}`);
         callback(err);

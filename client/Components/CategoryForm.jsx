@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button } from './Styles/FormStyles.jsx';
 
-function CategoryForm() {
+function CategoryForm({ addCategory }) {
   const [category, setCategory] = useState('');
   const [budget, setBudget] = useState('');
 
@@ -15,7 +15,8 @@ function CategoryForm() {
   }
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
+    addCategory({category, budget});
   }
 
   return (
