@@ -7,7 +7,6 @@ module.exports = {
         console.log(`error getting transactions: ${err}`);
         res.sendStatus(404);
       } else {
-        console.log(data, 'transactions');
         res.send(data);
       }
     })
@@ -18,7 +17,6 @@ module.exports = {
         console.log(`error getting categories: ${err}`);
         res.sendStatus(404);
       } else {
-        console.log(data, 'categories');
         res.send(data)
       }
     })
